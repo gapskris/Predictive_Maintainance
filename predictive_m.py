@@ -11,7 +11,8 @@ model_multi = joblib.load("GradientBoostingClassifier.pkl")
 
 # Load the model
 # App title
-
+image1 = Image.open('image1.png')
+st.image(image1, width=800)  
 image = Image.open('image.png')
 st.image(image, width=500)  
 
