@@ -28,20 +28,20 @@ st.write(f"Selected type: {Type}") #size = st.radio("Select Type:", ["L", "M", "
 type_mapping = {"H": 0, "L": 1, "M": 2}
 Type_encoded = type_mapping[Type]
 
-Air_Temperature = st.number_input('Air_Temperature', min_value=2.0,max_value=4.5,value=3.0,step=0.1,format="%.2f") 
-st.write("Air_Temperature:", Air_Temperature,format=".2f")
+Air_Temperature = st.number_input('Air_Temperature', min_value=2.0, max_value=4.5, value=3.0, step=0.1, format="%.2f") 
+st.write("Air_Temperature:", f"{Air_Temperature:.2f}")
 
-Process_Temperature = st.number_input('Process_Temperature', min_value=2.0,max_value=4.5,value=3.0,step=0.1,format="%.2f") 
-st.write("Process_Temperature:", Process_Temperature,format=".2f")
+Process_Temperature = st.number_input('Process_Temperature', min_value=2.0, max_value=4.5, value=3.0, step=0.1, format="%.2f") 
+st.write("Process_Temperature:", f"{Process_Temperature:.2f}")
 
-Roational_Temperature = st.number_input('Roational_Temperature', min_value=2.0,max_value=4.5,value=3.0,step=0.1,format="%.2f") 
-st.write("Roational_Temperature:", Roational_Temperature,format=".2f")
+Roational_Temperature = st.number_input('Roational_Temperature', min_value=2.0, max_value=4.5, value=3.0, step=0.1, format="%.2f") 
+st.write("Roational_Temperature:", f"{Roational_Temperature:.2f}")
 
-Torque_Temperature = st.number_input('Torque_Temperature', min_value=2.0,max_value=4.5,value=3.0,step=0.1,format="%.2f") 
-st.write("Torque_Temperature:", Torque_Temperature,format=".2f")
+Torque_Temperature = st.number_input('Torque_Temperature', min_value=2.0, max_value=4.5, value=3.0, step=0.1, format="%.2f") 
+st.write("Torque_Temperature:", f"{Torque_Temperature:.2f}")
 
-Tool_Wear_Min = st.number_input('Tool_Wear_Min', min_value=2.0,max_value=4.5,value=3.0,step=0.1,format="%.2f") 
-st.write("Tool_Wear_Min:", Tool_Wear_Min,format=".2f")
+Tool_Wear_Min = st.number_input('Tool_Wear_Min', min_value=2.0, max_value=4.5, value=3.0, step=0.1, format="%.2f") 
+st.write("Tool_Wear_Min:", f"{Tool_Wear_Min:.2f}")
 
 # Predict button
 if st.button('Predict Binary Classification'):
