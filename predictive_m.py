@@ -33,7 +33,7 @@ st.write("Air_Temperature:", Air_Temperature)
 Process_Temperature = st.number_input('Process_Temperature', min_value=2.0,max_value=4.5,value=3.0,step=0.1,format="%.2f") 
 st.write("Process_Temperature:", Process_Temperature)
 
-Roational_Temperature = st.number_input('Roaational_Temperature', min_value=2.0,max_value=4.5,value=3.0,step=0.1,format="%.2f") 
+Roational_Temperature = st.number_input('Roational_Temperature', min_value=2.0,max_value=4.5,value=3.0,step=0.1,format="%.2f") 
 st.write("Roaational_Temperature:", Roational_Temperature)
 
 Torque_Temperature = st.number_input('Torque_Temperature', min_value=2.0,max_value=4.5,value=3.0,step=0.1,format="%.2f") 
