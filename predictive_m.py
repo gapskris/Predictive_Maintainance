@@ -14,7 +14,7 @@ model_multi = joblib.load("GradientBoostingClassifier.pkl")
 image1 = Image.open('image1.png')
 st.image(image1, width=800)  
 image = Image.open('image.png')
-st.image(image, width=500)  
+st.image(image, width=800)  
 
 st.title("🛠️ Predictive Maintainance App")
 st.write("This app predicts the **Fail/No Fail as well as Failure_Type** of the machine based on input parameters.")
