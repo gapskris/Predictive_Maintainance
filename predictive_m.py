@@ -27,7 +27,7 @@ st.write(f"Selected type: {Type}") #size = st.radio("Select Type:", ["L", "M", "
 type_mapping = {"H": 0, "L": 1, "M": 2}
 Type_encoded = type_mapping[Type]
 
-Air_Temperature = st.number_input('Air_Temperature', 2.0, 4.5, 3.0) 
+Air_Temperature = st.number_input('Air_Temperature', min_value=2.0,max_value=4.5,value=3.0,step=0.1,format="%.2f") 
 st.write("Air_Temperature:", Air_Temperature,format="%.2f")
 
 Process_Temperature = st.number_input('Process_Temperature', min_value=2.0,max_value=4.5,value=3.0,step=0.1,format="%.2f") 
