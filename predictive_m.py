@@ -22,6 +22,13 @@ st.write("This app predicts the **Fail/No Fail as well as Failure_Type** of the 
 FailureType = ['Heat Dissipation Failure', 'No Failure', 'Overstrain Failure','Power Failure','Random Failure',"Tool Wear Failure"]
 Target = ['No Failure', 'Failure']
 
+#Heat Dissipation Failure → 0
+#No Failure → 1
+#Overstrain Failure → 2
+#Power Failure → 3
+#Random Failures → 4
+#Tool Wear Failure → 5
+
 # Input fields
 Type = st.selectbox("Choose type:", ["L", "M", "H"]) 
 st.write(f"Selected type: {Type}") #size = st.radio("Select Type:", ["L", "M", "S"]) 
@@ -50,7 +57,8 @@ if st.button('Predict Binary Classification'):
     if(model_bin is None):
         st.error("Model not loaded. Please load the model first.")
     prediction = model.predict(input_data)
-    st.success(f'Predicted Target: **{Target[prediction[0]]}**')
+    st.success(f'Predicted Failure_Type: **'prediction[0])
+    st.success(f'Predicted Target: **{Target[prediction[0]]}**')   
         
         
 if st.button('Predict - Multi Classification'):
@@ -59,6 +67,7 @@ if st.button('Predict - Multi Classification'):
     if(model_multi is None):
         st.error("Model not loaded. Please load the model first.")
     prediction = model.predict(input_data)
+    st.success(f'Predicted Failure_Type: **'prediction[0])
     st.success(f'Predicted Failure_Type: **{FailureType[prediction[0]]}**')
     
 
