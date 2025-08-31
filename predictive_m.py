@@ -45,14 +45,14 @@ st.write("Tool_Wear_Min:", Tool_Wear_Min)
 # Predict button
 if st.button('Predict Binary Classification'):
     input_data = np.array([[Type_encoded, Air_Temperature, Process_Temperature, Roational_Temperature, Torque_Temperature, Tool_Wear_Min]])
-    model = st.session_state.model_bin
+    model = model_bin
     prediction = model.predict(input_data)
     st.success(f'Predicted Target: **{Target[prediction[0]]}**')
         
         
 if st.button('Predict - Multi Classification'):
     input_data = np.array([[Type_encoded, Air_Temperature, Process_Temperature, Roational_Temperature, Torque_Temperature, Tool_Wear_Min]])   
-    model = st.session_state.model_multi
+    model = model_multi
     prediction = model.predict(input_data)
     st.success(f'Predicted Failure_Type: **{FailureType[prediction[0]]}**')
     
