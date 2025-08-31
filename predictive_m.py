@@ -57,7 +57,7 @@ if st.button('Predict Binary Classification'):
     if(model_bin is None):
         st.error("Model not loaded. Please load the model first.")
     prediction = model.predict(input_data)
-    st.success(f'Predicted Failure_Type: **'prediction[0])
+    st.success(f'Predicted Failure_Type: **',prediction[0])
     st.success(f'Predicted Target: **{Target[prediction[0]]}**')   
         
         
@@ -67,7 +67,7 @@ if st.button('Predict - Multi Classification'):
     if(model_multi is None):
         st.error("Model not loaded. Please load the model first.")
     prediction = model.predict(input_data)
-    st.success(f'Predicted Failure_Type: **'prediction[0])
+    st.success(f'Predicted Failure_Type: **',prediction[0])
     st.success(f'Predicted Failure_Type: **{FailureType[prediction[0]]}**')
     
 
