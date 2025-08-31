@@ -4,20 +4,10 @@ import joblib
 import numpy as np
 from PIL import Image
 
-# Initialize models in session_state (persists across reruns)
-if "model_bin" not in st.session_state:
-    st.session_state.model_bin = None
-if "model_multi" not in st.session_state:
-    st.session_state.model_multi = None
-
+model_bin = joblib.load("LGBMClassifier_binary.pkl")
+model_multi = joblib.load("GradientBoostingClassifier.pkl")
 # Load models on button click
-if st.button('Binary Classification'):
-    st.write('Binary Classification Selected: This will show "Fail" or "No Failure"')
-    st.session_state.model_bin = joblib.load("LGBMClassifier_binary.pkl")
 
-if st.button('Multi Classification'):
-    st.write('Multi Classification Selected: This will show different failure types')
-    st.session_state.model_multi = joblib.load("GradientBoostingClassifier.pkl")
 
 # Load the model
 # App title
@@ -25,14 +15,14 @@ if st.button('Multi Classification'):
 image = Image.open('image.png')
 st.image(image, width=500)  
 
-st.title("🫘 Predictive Maintainance App")
-st.write("This app predicts the **Failure_Type** of the machine based on input parameters.")
+st.title("🛠️ Predictive Maintainance App")
+st.write("This app predicts the **Fail/No Fail as well as Failure_Type** of the machine based on input parameters.")
 
 FailureType = ['Heat Dissipation Failure', 'No Failure', 'Overstrain Failure','Power Failure','Random Failure',"Tool Wear Failure"]
 Target = ['No Failure', 'Failure']
 
 # Input fields
-Type = st.selectbox("Choose type:", ["L", "M", "S"]) 
+Type = st.selectbox("Choose type:", ["L", "M", "H"]) 
 st.write(f"Selected type: {Type}") #size = st.radio("Select Type:", ["L", "M", "S"]) 
 type_mapping = {"H": 0, "L": 1, "M": 2}
 Type_encoded = type_mapping[Type]
@@ -43,8 +33,8 @@ st.write("Air_Temperature:", Air_Temperature)
 Process_Temperature = st.number_input('Process_Temperature', min_value=2.0,max_value=4.5,value=3.0,step=0.1,format="%.2f") 
 st.write("Process_Temperature:", Process_Temperature)
 
-Roaational_Temperature = st.number_input('Roaational_Temperature', min_value=2.0,max_value=4.5,value=3.0,step=0.1,format="%.2f") 
-st.write("Roaational_Temperature:", Roaational_Temperature)
+Roational_Temperature = st.number_input('Roaational_Temperature', min_value=2.0,max_value=4.5,value=3.0,step=0.1,format="%.2f") 
+st.write("Roaational_Temperature:", Roational_Temperature)
 
 Torque_Temperature = st.number_input('Torque_Temperature', min_value=2.0,max_value=4.5,value=3.0,step=0.1,format="%.2f") 
 st.write("Torque_Temperature:", Torque_Temperature)
@@ -53,23 +43,18 @@ Tool_Wear_Min = st.number_input('Tool_Wear_Min', min_value=2.0,max_value=4.5,val
 st.write("Tool_Wear_Min:", Tool_Wear_Min)
 
 # Predict button
-if st.button('Predict'):
-    input_data = np.array([[Type_encoded, Air_Temperature, Process_Temperature, Roaational_Temperature, Torque_Temperature, Tool_Wear_Min]])
-    if st.session_state.model_bin is not None:
-        model = st.session_state.model_bin
-        prediction = model.predict(input_data)
-        st.success(f'Predicted Target: **{Target[prediction[0]]}**')
-        print("Prediction:", prediction)
-    else:
-        st.write("Binary Model is not loaded.")
+if st.button('Predict Binary Classification'):
+    input_data = np.array([[Type_encoded, Air_Temperature, Process_Temperature, Roational_Temperature, Torque_Temperature, Tool_Wear_Min]])
+    model = st.session_state.model_bin
+    prediction = model.predict(input_data)
+    st.success(f'Predicted Target: **{Target[prediction[0]]}**')
         
-    if st.session_state.model_multi is not None:
-        model = st.session_state.model_multi
-        prediction = model.predict(input_data)
-        st.success(f'Predicted Failure_Type: **{FailureType[prediction[0]]}**')
-        print("Prediction:", prediction)
-    else:
-        st.write("Multi Model is not loaded.")
-                
+        
+if st.button('Predict - Multi Classification'):
+    input_data = np.array([[Type_encoded, Air_Temperature, Process_Temperature, Roational_Temperature, Torque_Temperature, Tool_Wear_Min]])   
+    model = st.session_state.model_multi
+    prediction = model.predict(input_data)
+    st.success(f'Predicted Failure_Type: **{FailureType[prediction[0]]}**')
+    
 
 
